@@ -1,49 +1,60 @@
+*{
+    box-sizing: border-box !important;
+}
+
 .footer_main{
-    height: 520px;
     background-color: #282828;
+    min-height: 520px;
     padding: 60px 0px;
 }
 .footer_wrapper{
-    padding: 30px;
-    margin: 0px 180px;
+    margin: 0px 10%;
 }
-.footer_upper{
+.footer_upper{  
     display: flex;
     width:100%;
     box-sizing: border-box;
 }
+
 .footer_lower{
-    float: left;
     width:100%;
     box-sizing: border-box;
+    padding-right: 43px;
 }
 .footer_upper_left{
+    
     width: 50%;
 }
 .footer_upper_right{
+    
     width: 50%;
+    float: left;
 }
+
 .grid_item{
     width: 25%;
     box-sizing: border-box;
     min-height: 1px;
-    vertical-align: top;
 }
 
+h3{
+    color:#fff;
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 5px;
+
+}
 .grid_item h3{
     color: #fff;
 }
 
-button[type="submit"]{
-    background-color: #39BCCD;
-}
-
 li a{
     font-size: 12px;
+    color: #acacac;
 }
-
+li a:hover{
+    color: #fff;
+}
 .hr{
-    /* border: 1px solid white; */
     width: 100%;
     padding: 38px 0px 28px 0px;
 }
@@ -55,7 +66,14 @@ hr.thin{
 .footer_lower_right{
     width: 100%;
 }
-
+.second{
+display: none;
+}
+.badges{
+    max-width: 387px;
+    float: right;
+    margin-right: 8px;
+}
 .footer_lower_left{
     width: 100%;
 }
@@ -64,8 +82,219 @@ hr.thin{
     margin-left: 10px;
 }
 
+.buylink{
+    color:#fff !important;
+}
+.buylink:hover{
+    color: #39BCCD !important;
+}
+
+form{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"],input[type="email"] {
+    border-radius: 0;
+    background: #525252;
+    color: #acacac;
+    border: none;
+    font-size: 12px;
+    width: 40%;
+    padding: 8px 10px;
+    margin-right: 5px;
+}
+
+input[type='submit']{
+    border-radius: 0;
+    color: #fff;
+    border: none;
+    font-family: 'Roboto Slab', serif;
+    font-size: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+    background-color: #39BCCD;
+}
+input[type='submit']:hover{
+   background-color: #E08738;
+}
+.footersocial{
+    margin: 10px 0 0 0;
+    width: 100%;
+    display: flex;
+}
+.facebook{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-size: 120px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+.facebook:hover{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-size: 120px;
+    background-position: 0 -27px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+.instagram{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-size: 120px;
+    background-position: -30px 0;
+    margin-left: 5px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+.instagram:hover{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-size: 120px;
+    background-position: -30px -27px;
+    margin-left: 5px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+.twitter{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-position: -98px 1px;
+    background-size: 116px;
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+.twitter:hover{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-position: -98px -25px;
+    background-size: 116px;
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+.pinterest{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-size: 120px;
+    background-position: -65px 0;
+    margin-left: 15px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+
+
+
+.pinterest:hover{
+    background: url('https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/social-icons-sprite.png') no-repeat;
+    background-size: 120px;
+    background-position: -65px -27px;
+    margin-left: 15px;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+}
+.footer_lower_bottom{
+    display: flex;
+}
+.credits{
+margin-left: 20px;
+color: #fff;
+}
+.credits address{
+    color: #fff;
+    font-size: 13px;
+    font-style: normal;
+    }
 .copyright{
     font-size: 10px;
     color: #acacac;
     margin-top: 14px;
 }
+.copyright a{
+    font-size: 10px;
+    color: #acacac;
+    margin-top: 14px;
+}
+.copyright a:hover{
+    color: #fff; 
+}
+.grid_item_list{
+    display: flex;
+}
+
+@media screen and (max-width: 762px) {
+    .footer_upper {
+      flex-direction: column;
+      
+    }
+    .footer_upper_left,.footer_upper_right{
+        width: 100%;
+    }
+    .footer_upper_right{
+        margin-top: 10px;
+    }
+    input[type="text"],input[type="email"] {
+        width: 35%;
+    }
+    .footer_wrapper{
+        padding: 20px;
+        margin: 0px 5%;
+    }
+    .first{
+        display: none;
+    }
+    .second{
+        display: block;
+    }
+}
+.bottom_corner_share{
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+.bottom_corner_share button{
+    border-radius: 0;
+    color: #fff;
+    height: 35px;
+    border: 1px solid #fff;
+    font-family: 'Roboto Slab', serif;
+    font-size: 10px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #39BCCD;
+}
+@media screen and (max-width: 990px) {
+
+    input[type="text"],input[type="email"] {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .footer_lower_bottom{
+        flex-direction: column;
+    }
+    .grid_item_list{
+        flex-direction: column;
+        place-items: center;
+    }
+    .grid_item{
+        text-align: center;
+    }
+    .bottom_corner_share{
+        display: flex;
+        flex-direction: column;
+    }
+    .bottom_corner_share div{
+       background:#FFFFFF;
+    }
+}
+
+
