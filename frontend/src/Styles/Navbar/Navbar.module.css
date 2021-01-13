@@ -1,0 +1,172 @@
+.root {
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  background: #fff;
+  min-height: 134px;
+  width: 100%;
+
+}
+.wrapper {
+  margin: 0px 180px;
+  padding: 0px 30px;
+}
+.grid_item {
+  display: flex;
+}
+.grid_item_1 {
+  width: 40%;
+  padding-left: 30px;
+}
+.grid_item_2 {
+  width: 20%;
+  min-height: 134px;
+  position: relative;
+  padding-left: 20px;
+}
+.grid_item_2_wrapper{
+    position: relative;
+    width: 185px;
+    top: 11px;
+}
+.grid_item_2_wrapper a{
+    max-width: 450px;
+}
+.grid_item_2_wrapper a img{
+    width: 185px;
+    height: 136px;
+    position: absolute;
+}
+.grid_item_3 {
+  width: 40%;
+  padding-left: 30px;
+}
+.top_margin {
+  margin-top: 87px;
+}
+.link ul li {
+    float: left;
+    padding-right: 30px;
+   
+
+}
+.link ul li a {
+      padding-bottom: 40px;
+      padding-right: 24px;
+     color: #000;
+     word-spacing: 10px;
+     font-size: 18px;
+     font-family: 'Acme', sans-serif;
+     font-weight: 900;
+}
+.link ul li a:hover {
+   color:#39BCCD;
+}
+.top{
+    width: 100%;
+    background: #39BCCD;
+    display: none;  
+}
+.top a{
+    color:#fff;
+}
+
+.grid_item_3_top{
+    padding-top:30px;
+    display: flex;
+    flex-direction: row-reverse;
+   
+}
+
+.grid_item_3_bottom ul{
+    margin-top:20px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.grid_item_3_bottom ul li a{
+    font-size: 14px;
+    margin-left: 20px;
+    color:#000;
+}
+.grid_item_3_bottom ul li a:hover{
+    color:#39BCCD;
+}
+.grid_item_3_bottom ul li:nth-child(1)::before{
+    background: url("https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/joinmail-blue.png") 0 0 no-repeat;
+    display: inline-block;
+    content: "";
+    width: 17px;
+    height: 11px;
+    background-size: 100%;
+    position: relative;
+    top: 1px;
+    margin-right: -10px;
+}
+.grid_item_3_bottom ul li:nth-child(4){
+   color:#39BCCD;
+}
+.freeinfo{
+    background: #2ebbcd;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 26px 0px 12px;
+    height: 35px;
+    display: block;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    position: relative;
+    transition: background 0.15s ease-in-out;
+
+}
+.freeinfo::after{
+    background: url("https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/header-promo-arrow.png")no-repeat;
+    content: "";
+    width: 7px;
+    height: 11px;
+    background-size: 88%;
+    display: inline-block;
+    margin-left: 10px;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+}
+
+@media screen and (max-width:1156px){
+    .top{
+        display: flex;     
+        place-content: center;
+        text-align: center;
+        padding: 12px 0px;
+        color:#fff;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: 600;
+        text-align: center;
+    }
+    .grid_item_3_bottom ul li:nth-child(1){
+      display: none;
+    }
+    .grid_item_3_bottom{
+        margin-top:87px;
+    }
+    .grid_item_3_top{
+      display: none;
+    }
+    .wrapper {
+        margin: 0px 80px;
+        padding: 0px 20px;
+      }
+}
+
+@media screen and (max-width:9px){
+    .grid_item_3_bottom ul li:nth-child(2){
+      display: none;
+    }
+     .grid_item_3_bottom ul li:nth-child(3){
+      display: none;
+    }
+}
+

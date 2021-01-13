@@ -17,8 +17,8 @@
 }
 .outer_border{
     position: relative;
-    border-right:1px solid white;
-    border-left: 1px solid white;
+    border-right:2px solid white;
+    border-left: 2px solid white;
 }
 .inner_data{
     padding: 40px 30px 40px 30px;
@@ -50,7 +50,7 @@
 .title:after { 
     content: ""; 
     flex: 1 1; 
-    border-bottom: 1px solid white; 
+    border-bottom: 2px solid white; 
 } 
 
 .title:before{
@@ -77,7 +77,7 @@
 .learn_more_button:after { 
     content: ""; 
     flex: 1 1; 
-    border-bottom: 1px solid white; 
+    border-bottom: 2px solid white; 
 } 
 
 .learn_more_button button{
@@ -89,10 +89,76 @@
     font-weight: 800;
     font-size: 18px;
     cursor: pointer;
+    outline: none;
 }
 
 
 .learn_more_button button:hover{
   background-color: white;
   color: #39BCCD;;
+}
+@media screen and (max-width:1081px){
+    .inner_data{
+        padding: 30px 20px 30px 20px;
+    }
+    .inner_data h2{
+        padding: 8px;
+        font-size: 22px;
+        font-weight: 800;
+    }
+    .root{
+        height: 400px;
+    }
+}
+@media screen and (max-width:770px){
+    .root{
+        width: 100%;
+        margin:0px;
+        border-top:1px solid #fff;
+    }
+}
+
+@media screen and (max-width:680px){
+   
+    .inner_data{
+        padding: 20px 10px 20px 10px;
+    }
+    .inner_data h2{
+        padding: 7px;
+        font-size: 22px;
+        font-weight: 800;
+    }
+    
+}
+
+@media screen and (max-width:480px){
+    .inner_data{
+        padding: 10px 10px 10px 10px;
+    }
+    .inner_data h2{
+        padding: 5px;
+        font-size: 16px;
+        font-weight: 800;
+    }
+    
+.title{
+    font-size: 16px;
+    top:-10px;
+} 
+.title:before{
+    margin-right: 12px;
+} 
+.title:after{
+    margin-left: 12px;
+} 
+.learn_more_button{
+    font-size: 14px;
+    bottom: -13.5px;
+}
+
+.learn_more_button button{
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
 }
