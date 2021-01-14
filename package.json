@@ -1,0 +1,28 @@
+{
+  "name": "Shopping-Cart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "runall": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsriniwas/Shopping-Cart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lsriniwas/Shopping-Cart/issues"
+  },
+  "homepage": "https://github.com/lsriniwas/Shopping-Cart#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

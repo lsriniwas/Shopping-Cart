@@ -6,6 +6,7 @@ import { Footer } from '../../Components/Footer/Footer'
 import { FreeShipping } from '../../Components/FreeShipping/FreeShipping'
 import { LearnMore } from '../../Components/LearnMore/LearnMore'
 import { Navbar } from '../../Components/Navbar/Navbar'
+import { BarPage } from '../../Pages/BarPage'
 
 class Routes extends Component {
 
@@ -13,10 +14,13 @@ class Routes extends Component {
         return (
             <div>
                 <SocialMedia />
-                <Navbar />
+                {/* <Navbar /> */}
                 <Switch>
                     <Route path="/" exact>
                         <MainBody />
+                    </Route>
+                    <Route path="/collections/amaze-bars" exact>
+                        <BarPage/>
                     </Route>
                 </Switch>
                 <FreeShipping />
