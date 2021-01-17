@@ -1,34 +1,56 @@
-import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React, { Component, useState } from 'react'
+import { Route, Switch, useHistory, useParams } from 'react-router-dom'
 import { MainBody } from '../../Components/Body/MainBody'
 import { SocialMedia } from '../../Components/FixedSocialMediaHandle/SocialMedia'
 import { Footer } from '../../Components/Footer/Footer'
 import { FreeShipping } from '../../Components/FreeShipping/FreeShipping'
 import { LearnMore } from '../../Components/LearnMore/LearnMore'
 import { Navbar } from '../../Components/Navbar/Navbar'
+import { Register } from '../../Components/Register/Register'
 import { BarPage } from '../../Pages/BarPage'
+import { Product } from '../../Pages/Product'
+import { PrivateRoute } from '../Private/PrivateRoute'
+import { Profile } from '../Private/Profile'
 
-class Routes extends Component {
+const Routes = () => {
+    return (
+        <div>
+            <Navbar />
+            <SocialMedia />
+            <Switch>
+                <Route path="/" exact>
+                    <MainBody />
 
-    render() {
-        return (
-            <div>
-                <SocialMedia />
-                {/* <Navbar /> */}
-                <Switch>
-                    <Route path="/" exact>
-                        <MainBody />
-                    </Route>
-                    <Route path="/collections/amaze-bars" exact>
-                        <BarPage/>
-                    </Route>
-                </Switch>
-                <FreeShipping />
-                <LearnMore />
-                <Footer />
-            </div>
-        )
-    }
+                    <FreeShipping />
+                    <LearnMore />
+                </Route>
+                <Route path="/collections/amaze-bars" exact>
+                    <BarPage />
+
+                    <FreeShipping />
+                    <LearnMore />
+                </Route>
+                <Route path="/collections/amaze-bars/product" exact>
+                    <Product />
+                    <FreeShipping />
+                    <LearnMore />
+                </Route>
+                <PrivateRoute path="/account" exact>
+                   <Profile/>
+                </PrivateRoute>
+                <Route path="/account/register" exact>
+                    <Register />
+                </Route>
+                <Route exact>
+                    <h1>
+                        404.error
+                        </h1>
+                </Route>
+            </Switch>
+
+            <Footer />
+        </div>
+    )
 }
 
 export { Routes }

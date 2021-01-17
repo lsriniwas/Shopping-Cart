@@ -5,7 +5,7 @@
     position: fixed;
     right: -1px;
     top: 190px;
-    z-index: 10000;   
+    z-index: 1000;   
 }
 
 .root span{

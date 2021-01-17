@@ -4,9 +4,12 @@ import "../../Styles/Body/MainBody.module.css"
 import styles from "../../Styles/Body/MainBody.module.css"
 import { NavLink } from 'react-router-dom'
 export const MainBody = () => {
+    React.useEffect(()=>{
+        document.title = `Taza Chocolate | Organic Stone Ground Chocolate for Bold Flavor`
+    })
     return (
         <>
-        <div style={{position:'relative',top:110}}>
+        <div style={{position:'relative'}}>
             <NavLink to="/">
                 <div className={styles.root}>
                     <div className={styles.content_wrapper}>

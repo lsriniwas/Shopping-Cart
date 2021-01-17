@@ -1,0 +1,11 @@
+GET http://localhost:5000/collections/amaze-bars
+
+###
+
+GET http://localhost:5000/user/profile
+Content-Type: application/json
+
+{
+    "email":"customer1@gmail.com",
+    "password":"customer1"
+}

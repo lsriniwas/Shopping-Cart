@@ -28,8 +28,10 @@ export const fetchCollectionBars=(payload)=>(dispatch)=>{
         data : payload
       };
       
-      axios(config)
+     return axios(config)
       .then(({data})=>dispatch(fetchBarsSuccess(data)))
       .catch((err)=>dispatch(fetchBarsFailure(err)))
 }
+
+
 
