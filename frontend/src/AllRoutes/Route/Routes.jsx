@@ -1,6 +1,7 @@
-import React, { Component, useState } from 'react'
-import { Route, Switch, useHistory, useParams } from 'react-router-dom'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 import { MainBody } from '../../Components/Body/MainBody'
+import { Cart } from '../../Components/Cart/Cart'
 import { SocialMedia } from '../../Components/FixedSocialMediaHandle/SocialMedia'
 import { Footer } from '../../Components/Footer/Footer'
 import { FreeShipping } from '../../Components/FreeShipping/FreeShipping'
@@ -40,6 +41,9 @@ const Routes = () => {
                 </PrivateRoute>
                 <Route path="/account/register" exact>
                     <Register />
+                </Route>
+                <Route path="/cart" exact>
+                    <Cart />
                 </Route>
                 <Route exact>
                     <h1>

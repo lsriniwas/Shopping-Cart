@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {useDispatch, useSelector} from "react-redux"
+import {Alert} from "@material-ui/lab"
 import styles from "../../Styles/Register/Register.module.css"
 import "../../Styles/Register/Register.module.css"
 import { CustomHook } from '../CustomHook/CustomHook'
 import { v4 as uuidv4 } from 'uuid';
 import { userSignUp } from '../../Redux/isAuth/actions'
-import { Redirect, useHistory } from 'react-router-dom'
-import {Alert} from "@material-ui/lab"
+import { Redirect } from 'react-router-dom'
 const init={
      id:uuidv4(),
      first_name:"",
@@ -19,8 +19,7 @@ const init={
 export const Register=()=> {
     const [value,setValue]=CustomHook(init);
     const dispatch = useDispatch();
-    const history=useHistory();
-    const {isAuth,error,isLoading} =useSelector(state=>state.authReducer)
+    const {isAuth,error} =useSelector(state=>state.authReducer)
     const handleFormData=(e)=>{
         e.preventDefault();
         dispatch(userSignUp(value))

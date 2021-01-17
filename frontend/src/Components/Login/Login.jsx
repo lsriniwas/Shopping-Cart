@@ -5,9 +5,11 @@ import Fade from '@material-ui/core/Fade';
 import { Modal } from '@material-ui/core';
 import styles from "../../Styles/Login/Login.module.css"
 import  "../../Styles/Login/Login.module.css"
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../../Redux/isAuth/actions';
+import {useSelector} from "react-redux"
+import {Alert} from "@material-ui/lab"
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',
@@ -36,7 +38,7 @@ export const Login = ({login,setLogin}) => {
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const dispatch=useDispatch()
-
+    const {isAuth,error} =useSelector(state=>state.authReducer)
     const handleClose = () => {
         setOpen(false);
         setLogin(false)
@@ -51,9 +53,16 @@ export const Login = ({login,setLogin}) => {
             email,
             password
         }
-        console.log(payload)
         dispatch(userLogin(payload))
+        
+       
     }
+ 
+    React.useEffect(()=>{
+        if(isAuth){
+            handleClose()
+        }
+    },[isAuth])
 
     return (
         <Modal
@@ -67,6 +76,7 @@ export const Login = ({login,setLogin}) => {
         }}
     >
         <Fade in={open}>
+               
             <div style={{outline:'none',border:'none',position:'relative'}} >
                 <div className={styles.close_cross} onClick={handleClose}>
                    +
@@ -76,6 +86,14 @@ export const Login = ({login,setLogin}) => {
                 <h2>SIGN IN</h2>
                 </div>
                 <div>
+                {error && 
+                   <Alert  variant="filled" severity="error">
+                     Email and Password does not match!
+                    </Alert>
+                }
+                {
+                    isAuth && <Redirect to="/account"/>
+                }
                     <form onSubmit={handleLoginData}>
                         <div>
                             <div className={styles.label}>
@@ -93,7 +111,7 @@ export const Login = ({login,setLogin}) => {
                              <input required  type="text" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
                             </div>
                         </div>
-                        <button className={styles.formButton}>SIGN IN</button>
+                        <button className={styles.formButton} >SIGN IN</button>
                     </form>
                 </div>
                 <p className={styles.forgot_password}>Forgot your password?</p>

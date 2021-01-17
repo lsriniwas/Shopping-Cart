@@ -49,20 +49,16 @@ server.post("/account/register",(req,res)=>{
                         .then(()=> res.status(200).send({messsage:'Registeration Successful',userInfo:newUser}))
                        }
                         else{
-                         console.log(data)
                          res.status(400).send({Error:"User already exist"})    
                         }
                 })
         .catch(err=>{
-                console.log(err)
                 res.status(400).send(err)})
  })      
  
 
-server.get("/user/profile",(req,res)=>{
+server.post("/user/profile",(req,res)=>{
 
-        console.log(req.body)
-        
         User.find({email:req.body.email,password:req.body.password})
         .then(data=>{
                 if(data.length!=0){

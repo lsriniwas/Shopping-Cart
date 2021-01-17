@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import "../../Styles/Navbar/Navbar.module.css"
 import styles from "../../Styles/Navbar/Navbar.module.css"
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Login } from '../Login/Login'
@@ -20,11 +20,7 @@ const LightTooltip = withStyles(() => ({
         zIndex: 999999
     }
 }))(Tooltip);
-const useStyles = makeStyles((theme) => ({
-    title: {
-        flexGrow: 1,
-    },
-}));
+
 export const Navbar = () => {
     const matches = useMediaQuery('(max-width:1156px)')
     const [login,setLogin]=useState(false);

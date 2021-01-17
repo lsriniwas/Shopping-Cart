@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "./actionType"
+import { ADD_TO_CART, DELETE_CART } from "./actionType"
 
 const initialState = {
     cart:[],
@@ -23,27 +23,23 @@ export const cartorderReducer= (state = initialState, { type, payload,qty=1 }) =
     switch (type) {
     
     case ADD_TO_CART:
-        const searchCart = state.cart.findIndex((items) => items.id === payload.id);
+        let searchCart = state.cart.findIndex((items) => items.id === payload.id);
        
         if (searchCart === -1) {
-          const cart=[...state.cart, payload]
-          const total=getTotal(cart)
-          console.log(total,cart)
+          let cart=[...state.cart, payload]
+          let total=getTotal(cart)
             return{
                 ...state,
                 cart: cart,
                 totalAmt:total.total,
                 totalItems:total.totaItems
-
             }
         }
         else {
-          const newCart = state.cart?.map((item, i) =>
+          let newCart = state.cart?.map((item, i) =>
             i === searchCart ? { ...item, qty: Number(item.qty) +Number(qty) } : item
           );
-          const total=getTotal(newCart)
-          console.log(total,newCart)
-          
+          let total=getTotal(newCart)
          return{
              ...state,
              cart: [...newCart],
@@ -51,7 +47,16 @@ export const cartorderReducer= (state = initialState, { type, payload,qty=1 }) =
              totalItems:total.totaItems
          }
           }
-          
+      case DELETE_CART:
+          let index = state.cart.findIndex((items) => items.id === payload);
+          state.cart.splice(index,1)
+          let total=getTotal(state.cart)
+          return{
+          ...state,
+          cart:[...state.cart],
+          totalAmt:total.total,
+             totalItems:total.totaItems
+        }
           default:
               return state
     }

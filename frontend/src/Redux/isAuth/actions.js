@@ -28,7 +28,6 @@ export const userSignUp=payload=>dispatch=>{
         console.log(config)
 return axios(config)
        .then((response)=>{
-        console.log(response)
         dispatch(fetchUserSignUpSuccess(response))
         })
        .catch((error)=>{
@@ -54,20 +53,17 @@ export const userLogin=payload=>dispatch=>{
     dispatch(fetchUserLogin());
 
     var config = {
-    method: 'get',
+    method: 'post',
     url: 'http://localhost:5000/user/profile',
     headers: { 
       'Content-Type': 'application/json'
     },
     data : payload
   };
-  console.log(config)
    return axios(config)
   .then( (res)=> {
-    console.log("res",res)
         dispatch(fetchUserLoginSuccess(res.data))})
   .catch((err)=> {
-    console.log("err",err)
        dispatch(fetchUserLoginFailure(err))
   });
 }

@@ -1,6 +1,6 @@
-import { Breadcrumbs, Divider, Modal, Typography } from "@material-ui/core";
+import { Breadcrumbs, Divider,  Typography } from "@material-ui/core";
 import React, { useState } from "react";
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory} from "react-router-dom"
 import { NavLink } from "react-router-dom"
 import "../Styles/ProductPage/ProductPage.module.css"
 import styles from "../Styles/ProductPage/ProductPage.module.css"
@@ -17,7 +17,7 @@ export const Product = () => {
     React.useEffect(() => {
         window.scrollTo(0, 0)
         document.title = ` ${product.name} | Taza Chocolate`
-    })
+    },[])
     const handleAddToCart = (item) => {
         const payload = {
             id: item.id,
@@ -29,9 +29,11 @@ export const Product = () => {
         dispatch(addToCart(payload, qty))
         setItemAdded(true)
 
-        setTimeout(() => {
-            setItemAdded(false)
-        }, 2000)
+    //    let timer= setTimeout(() => {
+    //         setItemAdded(false)
+    //         clearTimeout(timer)
+    //     }, 2000)
+
     }
 
     return (

@@ -2,7 +2,7 @@ GET http://localhost:5000/collections/amaze-bars
 
 ###
 
-GET http://localhost:5000/user/profile
+POST http://localhost:5000/user/profile
 Content-Type: application/json
 
 {

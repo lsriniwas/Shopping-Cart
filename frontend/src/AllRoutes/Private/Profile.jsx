@@ -1,5 +1,5 @@
 import { Divider } from '@material-ui/core'
-import React, { Component } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { userLogout } from '../../Redux/isAuth/actions'

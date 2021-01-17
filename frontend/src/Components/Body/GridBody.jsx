@@ -17,7 +17,7 @@ export const GridBody = () => {
                     </div>
                     <div className={styles.smooth_hover}></div>
                 </NavLink>
-                <NavLink to="/" >
+                <NavLink to="/"  >
                     <div className={styles.upper_inner_wrapper}>
                     <p className={styles.title}>Shop</p>
                             <p><span></span></p>

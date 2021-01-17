@@ -26,7 +26,15 @@ export const isAuthReducer = (state = initialState, { type, payload }) => {
         error_message: "",
         profile: "",
       };
-    case REQUEST_USER_SIGNUP_SUCCESS || REQUEST_USER_LOGIN_SUCCESS:
+      case REQUEST_USER_SIGNUP_SUCCESS:
+        return {
+          ...state,
+          profile: payload,
+          isLoading: false,
+          isAuth: true,
+          error: true,
+        };
+      case REQUEST_USER_LOGIN_SUCCESS:
       return {
         ...state,
         profile: payload,
@@ -34,7 +42,16 @@ export const isAuthReducer = (state = initialState, { type, payload }) => {
         isAuth: true,
         error: true,
       };
-    case REQUEST_USER_SIGNUP_FAILURE || REQUEST_USER_SIGNUP_FAILURE: {
+    case REQUEST_USER_SIGNUP_FAILURE: {
+      return {
+        ...state,
+        isAuth: false,
+        error_message: payload,
+        error: true,
+        isLoading: false,
+      };
+    }
+    case REQUEST_USER_LOGIN_FAILURE: {
       return {
         ...state,
         isAuth: false,
@@ -55,3 +72,4 @@ export const isAuthReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
+// style={{display:'fixed',zIndex:10000}}

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "../Styles/BarPage/BarPage.module.css"
 import "../Styles/BarPage/BarPage.module.css"
 import { Breadcrumbs,Grid, Typography } from '@material-ui/core';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 export const BarPage = () => {
     const dispatch = useDispatch()
     const bars = useSelector(state => state.collectionsBarReducer.bars)
@@ -18,14 +18,13 @@ export const BarPage = () => {
         window.scrollTo(0, 0)
         document.title = `Bars —Taza Chocolate`
         dispatch(fetchCollectionBars())
-    }, [dispatch])
+    }, [])
     const handleProduct=(product)=>{
         const data={
             pathname:'/collections/amaze-bars/product',
             search: `?${product._id}`,
             state:product
         }
-        console.log(data)
         history.push(data)
     }
 
