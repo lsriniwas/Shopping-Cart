@@ -37,7 +37,7 @@ export const isAuthReducer = (state = initialState, { type, payload }) => {
       case REQUEST_USER_LOGIN_SUCCESS:
       return {
         ...state,
-        profile: payload,
+        profile: payload[0],
         isLoading: false,
         isAuth: true,
         error: true,
@@ -72,4 +72,3 @@ export const isAuthReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
-// style={{display:'fixed',zIndex:10000}}

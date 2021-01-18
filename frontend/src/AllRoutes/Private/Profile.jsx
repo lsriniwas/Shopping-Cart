@@ -1,14 +1,31 @@
-import { Divider } from '@material-ui/core'
-import React from 'react'
+import { Divider, Fade, makeStyles, Modal, Paper } from '@material-ui/core'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { userLogout } from '../../Redux/isAuth/actions'
 import "../../Styles/Profile/Profile.module.css"
 import styles from "../../Styles/Profile/Profile.module.css"
+
+const useStyles=makeStyles(()=>({
+         modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+}))
+
+
 export const Profile = () => {
+    const [open,setOpen]=useState(false)
+    const classes=useStyles();
     const dispatch = useDispatch();
     const profile=useSelector(state=>state.authReducer.profile)
-    
+    const handleOpen=()=>{
+        setOpen(true);
+    }
+    const handleClose=()=>{
+        setOpen(false);
+    }
     React.useEffect(() => {
         window.scrollTo(0, 0)
         document.title = `User Profile |Taza Chocolate `
@@ -17,7 +34,6 @@ export const Profile = () => {
     const handleLogout = () => {
         dispatch(userLogout())
     }
-    
     return (
         <div className={styles.root}>
             <div className={styles.header}>
@@ -33,11 +49,11 @@ export const Profile = () => {
                 <div>
                     <div>
                         <h1>ACCOUNT DETAILS</h1>
-                        <h4>Sriniwas</h4>
+                        <h4>{`${profile.first_name} ${profile.last_name}`}</h4>
                     </div>
                     <Divider />
                     <div className={styles.address_signout}>
-                        <div>View Addresses</div>
+                        <div onClick={handleOpen}>View Addresses</div>
                         <div>
                             {`>`}
                         </div>
@@ -49,6 +65,20 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
+            <Modal
+            className={classes.modal}
+            open={open}
+            >
+                <Fade
+                in={open}
+                >
+                    <div onClick={handleClose}>
+                        <Paper>
+                            hello
+                        </Paper>
+                    </div>
+                </Fade>
+            </Modal>
         </div>
     )
 }

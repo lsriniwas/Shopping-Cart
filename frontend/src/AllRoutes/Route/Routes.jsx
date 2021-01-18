@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { MainBody } from '../../Components/Body/MainBody'
 import { Cart } from '../../Components/Cart/Cart'
+import { Checkout } from '../../Components/Checkout/Checkout'
 import { SocialMedia } from '../../Components/FixedSocialMediaHandle/SocialMedia'
 import { Footer } from '../../Components/Footer/Footer'
 import { FreeShipping } from '../../Components/FreeShipping/FreeShipping'
@@ -16,10 +17,10 @@ import { Profile } from '../Private/Profile'
 const Routes = () => {
     return (
         <div>
-            <Navbar />
-            <SocialMedia />
+            {/* <SocialMedia /> */}
             <Switch>
                 <Route path="/" exact>
+                     <Navbar />
                     <MainBody />
 
                     <FreeShipping />
@@ -27,11 +28,14 @@ const Routes = () => {
                 </Route>
                 <Route path="/collections/amaze-bars" exact>
                     <BarPage />
+                    <Navbar />
 
                     <FreeShipping />
                     <LearnMore />
                 </Route>
                 <Route path="/collections/amaze-bars/product" exact>
+            <Navbar />
+                 
                     <Product />
                     <FreeShipping />
                     <LearnMore />
@@ -43,8 +47,17 @@ const Routes = () => {
                     <Register />
                 </Route>
                 <Route path="/cart" exact>
+                    <Navbar />
                     <Cart />
                 </Route>
+                <Route path="/order" exact>
+                <Navbar />
+                    <Checkout />
+                </Route>
+                
+
+
+                
                 <Route exact>
                     <h1>
                         404.error

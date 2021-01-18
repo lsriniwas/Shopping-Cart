@@ -57,7 +57,7 @@ export const Footer = () => {
                     </div>
                     <div className={styles.footer_upper_right}>
                         <h3>JOIN OUR MAILING LIST</h3>
-                        <form action="">
+                        <form action="" className={styles.form_inp}>
                             <input type="text" name="" id="" placeholder="Name" />
                             <input type="email" name="" id="" placeholder="Email" />
                             <input type="submit" value="SIGN UP" />

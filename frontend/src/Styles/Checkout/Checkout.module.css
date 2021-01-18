@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+
+
+@media (min-width: 1000px) {
+  .header {
+    padding-top: 6em;
+    padding-bottom: 2em;
+  }
+}
+
+.header {
+  display: block;
+}
+
+.header {
+  padding: 1.5em 0;
+  background:url("https://cdn.shopify.com/s/files/1/0974/7668/files/checkout_header_image_2.jpg")
+    center center;
+  background-size: cover;
+}
+.wrapper{
+    padding:60px 0px 20px 0px;
+    display: flex;
+    justify-content: center;    
+    
+}
+.form_data{
+    display: flex;
+    margin: 0px 133px;
+
+}
+.form{
+    padding:0px 66px;
+    border:1px solid red;
+    width: 60%;
+    
+
+}
+.payment{
+    background: #fcfcfc!important;
+    width: 40%;
+    border:1px solid black;
+    padding:0px 8% 0px 2%;
+}
+
+.contact_info{
+    display: flex;
+}
+
+.form_inputs input{
+    padding:15px;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 3px;
+
+}
+.form_header{
+    margin: 20px 0px 30px 0px;
+}
+.first_inp_div{
+    display: flex;
+    justify-content: space-between;
+}
+.first_inp_div div{
+   width: 49%
+}
+.select_option{
+    display: flex;
+}
+
+.select_option div{
+ width: 33.33%;
+ padding-left: 10px;
+}
+.padding_left{
+    padding-left:-10px !important;
+   }
+.form_footer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.form_footer div {
+    width: 45%;
+}
+.form_footer div p{
+    color:#57cddd;
+}
+
+.form_footer div:nth-child(2) {
+    width: 35%;
+    background:#57cddd;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 900;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    padding:14px 0px;
+}
+.footer{
+    margin-right: 60px;
+}
+.footer ul {
+    padding: 10px 0px;
+    display: flex;
+
+}
+.footer ul li {
+    color: #4ec7d6;
+    margin-right: 30px;
+}
+
+ .item_checkout{
+    width: 4.6em ;
+    height: 4.6em;
+    border-radius: 8px;
+    background: #fff;
+    position: relative;
+    border:1px solid rgba(224, 224, 224, 1);
+ }
+
+ .item_checkout_img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+ }

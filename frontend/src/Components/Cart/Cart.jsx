@@ -1,12 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { deletecart } from '../../Redux/Cart_and_Orders/actions'
 import "../../Styles/Cart/Cart.module.css"
 import styles from "../../Styles/Cart/Cart.module.css"
 
 export const Cart = () => {
     const dispatch = useDispatch();
+    const history =useHistory()
     const items = useSelector(state => state.cartorderReducer.cart)
     const total = useSelector(state => state.cartorderReducer.totalAmt)
     const [qty, setQty] = React.useState(1);
@@ -19,6 +20,12 @@ export const Cart = () => {
     const handleRemove=(id)=>{
         dispatch(deletecart(id))
     }
+
+    const handleCheckout=()=>{
+        history.push("/order")
+    }
+
+
     return (
         <div className={styles.root}>
             {items.length!==0 &&
@@ -30,7 +37,7 @@ export const Cart = () => {
             <div className={styles.profile_wrapper}>
               { items.length!==0 && 
                 <>
-              <table>
+              <table className={styles.table_data}>
                     <thead>
                         <tr>
                             <th></th>
@@ -79,7 +86,7 @@ export const Cart = () => {
                         </div>
                         <div style={{display:'flex',flexDirection:'column',width:'100%',alignItems:'flex-end'}}  >
                             {/* <button className={styles.button}>UPDATE CART</button> */}
-                            <button className={styles.button}>CHECK OUT</button>
+                            <button className={styles.button} onClick={handleCheckout}>CHECK OUT</button>
                         </div>
                     </div>
                 </div>

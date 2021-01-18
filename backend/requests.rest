@@ -6,6 +6,21 @@ POST http://localhost:5000/user/profile
 Content-Type: application/json
 
 {
-    "email":"customer1@gmail.com",
-    "password":"customer1"
+    "email":"check@gmail.com",
+    "password":"check userRoute"
+}
+
+###
+
+POST http://localhost:5000/account/register
+Content-Type: application/json
+
+{
+    "id":"asdassdasdasd",
+    "first_name":"checkConnectToDB",
+    "last_name":"checkConnectToDB",
+    "password":"checkConnectToDB",
+    "email":"D@gmail.com",
+    "order_history":[],
+    "addresses":[]
 }
