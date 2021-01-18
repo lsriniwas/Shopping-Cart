@@ -51,21 +51,15 @@ const Routes = () => {
                     <Cart />
                 </Route>
                 <Route path="/order" exact>
-                <Navbar />
                     <Checkout />
                 </Route>
-                
-
-
-                
                 <Route exact>
                     <h1>
                         404.error
                         </h1>
                 </Route>
             </Switch>
-
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

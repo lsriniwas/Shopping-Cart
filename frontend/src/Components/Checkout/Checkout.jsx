@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from "../../Styles/Checkout/Checkout.module.css"
 import Divider from '@material-ui/core/Divider';
 import { useSelector } from 'react-redux';
-import { Badge, TextField } from '@material-ui/core';
+import { Badge, MenuItem, OutlinedInput, TextField } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,7 +11,11 @@ import TableRow from '@material-ui/core/TableRow';
 export const Checkout = () => {
     const cartItems = useSelector(state => state.cartorderReducer.cart)
     const totalAmt = useSelector(state => state.cartorderReducer.totalAmt)
-    const [color,setColor]=useState("rgba(224, 224, 224, 1)")
+    const [currency, setCurrency] = React.useState('EUR');
+
+    const handleChange = (event) => {
+        setCurrency(event.target.value);
+    };
     console.log(cartItems, totalAmt)
 
     return (
@@ -26,60 +30,149 @@ export const Checkout = () => {
             <div className={styles.form_data}>
                 <div className={styles.form}>
                     <div className={styles.form_header}>
-                        <h3>Contact Information</h3>
+                        <div className={styles.express_checkout}>
+                            <p className={styles.freeshipping}>Express checkout</p>
+                            <div className={styles.express_content_wrapper}>
+                                <div>
+                                    <button className={styles.shop_pay}></button>
+                                </div>
+                                <div>
+                                    <button className={styles.paypal}></button>
+                                </div>
+                                <div>
+                                    <button className={styles.amazon_pay}></button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+                        <br />
+                        <h4>Contact Information</h4>
                         <div className={styles.contact_info}>
                             <div>
                                 <img src="http://via.placeholder.com/60" alt="" />
                             </div>
                             <div>
-                                <p>Check@gamil.com</p>
+                                <p>Sriniwas (Sriniwas@gamil.com)</p>
                                 <p>Logout</p>
                             </div>
                         </div>
                     </div>
+                    <h4>Shipping Address</h4>
                     <div>
-                        <h4>Shipping Address</h4>
                         <form action="" className={styles.form_inputs}>
                             <div className={styles.first_inp_div}>
                                 <div>
-                                    <input type="text" name="" id="" placeholder="First name" /></div>
-                                <div><input type="text" name="" id="" placeholder="Last name" /></div>
+                                    <TextField
+                                        variant="outlined"
+                                        label="text"
+                                        type="text"
+                                        className={styles.input_name}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        variant="outlined"
+                                        label="text"
+                                        type="text"
+                                        className={styles.input_name}
+                                    />
+                                </div>
                             </div>
                             <div>
-                                <input type="text" name="" id="" placeholder="Company(optional)" />
+                                <TextField size='small'
+                                    variant="outlined"
+                                    label="text"
+                                    type="text"
+                                    fullWidth
+                                    style={{ margin: '10px 0px' }}
+                                />
                             </div>
                             <div>
-                                <input type="text" name="" id="" placeholder="Address" />
+                                <TextField size='small'
+                                    variant="outlined"
+                                    label="text"
+                                    type="text"
+                                    style={{ margin: '10px 0px' }}
+                                    fullWidth
+                                />
                             </div>
                             <div>
-                                <input type="text" name="" id="" placeholder="Apartment, suite, etc.(optional)" />
+                                <TextField size='small'
+                                    variant="outlined"
+                                    label="text"
+                                    type="text"
+                                    style={{ margin: '10px 0px' }}
+                                    fullWidth
+                                />
                             </div>
+
                             <div>
-                                <input type="text" name="" id="" placeholder="City" />
+                                <TextField size='small'
+                                    variant="outlined"
+                                    label="text"
+                                    type="text"
+                                    style={{ margin: '10px 0px' }}
+                                    fullWidth
+                                />
                             </div>
                             <div className={styles.select_option}>
                                 <div className={styles.padding_left}>
-                                    <select className={styles.padding_left} name="" id="" style={{ padding: "20px 0px", width: '100%' }}>
-                                        <option value="United ">United States</option>
-                                    </select>
+                                    <TextField
+
+                                        id="outlined-select-currency"
+                                        select
+                                        label="Select"
+                                        value={currency}
+                                        onChange={handleChange}
+                                        helperText="Please select your currency"
+                                        variant="outlined"
+                                        color="primary"
+                                    >
+                                        {[1, 2, 3, 4, 5].map((option) => (
+                                            <MenuItem key={option.value} style={{ color: 'primary' }} value={option}>
+                                                {option}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
                                 </div>
                                 <div>
-                                    <select name="" id="" style={{ padding: "20px 0px", width: '100%' }}>
-                                        <option disabled="">State</option>
-                                        <option value="AL">Alabama</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="AS">American Samoa</option>
-                                        <option value="AZ">Arizona</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="CA">California</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="CT">Connecticut</option>
-                                    </select>
+                                    <TextField
+
+                                        id="outlined-select-currency"
+                                        select
+                                        label="Select"
+                                        value={currency}
+                                        onChange={handleChange}
+                                        helperText="Please select your currency"
+                                        variant="outlined"
+                                        color="primary"
+                                    >
+                                        {[1, 2, 3, 4, 5].map((option) => (
+                                            <MenuItem key={option.value} style={{ color: 'primary' }} value={option}>
+                                                {option}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
                                 </div>
-                                <div><input type="text" name="" id="" placeholder="ZIP code" /></div>
+                                <div><div>
+                                    <TextField
+                                        variant="outlined"
+                                        label="text"
+                                        type="text"
+                                    />
+                                </div></div>
                             </div>
                             <div>
-                                <input type="text" name="" id="" placeholder="Phone" />
+                                <div>
+                                    <TextField size='small'
+                                        variant="outlined"
+                                        label="text"
+                                        type="text"
+                                        style={{ margin: '10px 0px' }}
+                                        fullWidth
+                                    />
+                                </div>
                             </div>
                         </form>
                         <div className={styles.form_footer}>
@@ -110,7 +203,7 @@ export const Checkout = () => {
                                 {
                                     cartItems?.map(item => {
                                         return (
-                                            <TableRow >
+                                            <TableRow>
                                                 <TableCell >
                                                     <Badge color="primary" badgeContent={item.qty}>
                                                         <div className={styles.item_checkout} >
@@ -129,10 +222,10 @@ export const Checkout = () => {
                                     })
                                 }
                                 <TableRow >
-                                    <TableCell> 
-                                    <input type="text" name="" id="" placeholder="Gift card or discount code"  className={styles.gift_coupon} style={{outline:color,padding:'15px',width:'200px'}} />
+                                    <TableCell className={styles.gift_coupon}>
+                                        <input type="text" name="" id="" placeholder="Gift card or discount code" />
                                     </TableCell>
-                                    <TableCell align="right"><button>APPLY</button></TableCell>
+                                    <TableCell align="right"><button className={styles.gift_coupon_button}>APPLY</button></TableCell>
                                 </TableRow>
                                 <TableRow >
                                     <TableCell>SubTotal</TableCell>
