@@ -31,6 +31,15 @@
     padding: 10px;
     font-size: 16px;
 }
+.input textarea{
+    width: 100%;
+    border: 1px solid #3AB4C7;
+    border-bottom: 3px solid #3AB4C7;
+    background:#fff;
+    padding: 10px;
+    min-inline-size: 1px;
+    font-size: 16px;
+}
 .formButton{
     background:#3AB4C7;
     padding: 10px;

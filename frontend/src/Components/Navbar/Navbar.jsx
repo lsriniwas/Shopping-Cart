@@ -89,7 +89,7 @@ export const Navbar = () => {
                         }
                         <div className={styles.grid_item_3_bottom} >
                             <ul>
-                                <li><NavLink to="/" title="Join Our Mailing List">Join Our Mailing List</NavLink></li>
+                                <li><NavLink to="/mail" title="Join Our Mailing List">Join Our Mailing List</NavLink></li>
                                 <li><NavLink to="/" title="Contact">Contact</NavLink></li>
                                 <li>
                                 {
@@ -149,6 +149,7 @@ export const Navbar = () => {
         {
             login && <Login login={login} setLogin={setLogin} />
         }
+        
         </div>
     )
 }

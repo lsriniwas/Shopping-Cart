@@ -96,7 +96,7 @@ form{
     box-sizing: border-box;
 }
 
-.form_inp input[type="text"],input[type="email"] {
+.form_inp input[type="text"],.form_inp input[type="email"] {
     border-radius: 0;
     background: #525252;
     color: #acacac;

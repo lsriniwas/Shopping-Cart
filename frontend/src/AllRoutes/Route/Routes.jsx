@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { MainBody } from '../../Components/Body/MainBody'
 import { Cart } from '../../Components/Cart/Cart'
 import { Checkout } from '../../Components/Checkout/Checkout'
+import { ContactUs } from '../../Components/ContactUs/ContactUs'
 import { SocialMedia } from '../../Components/FixedSocialMediaHandle/SocialMedia'
 import { Footer } from '../../Components/Footer/Footer'
 import { FreeShipping } from '../../Components/FreeShipping/FreeShipping'
@@ -17,10 +18,10 @@ import { Profile } from '../Private/Profile'
 const Routes = () => {
     return (
         <div>
-            {/* <SocialMedia /> */}
+            <SocialMedia />
             <Switch>
                 <Route path="/" exact>
-                     <Navbar />
+                    <Navbar />
                     <MainBody />
 
                     <FreeShipping />
@@ -34,14 +35,14 @@ const Routes = () => {
                     <LearnMore />
                 </Route>
                 <Route path="/collections/amaze-bars/product" exact>
-            <Navbar />
-                 
+                    <Navbar />
                     <Product />
                     <FreeShipping />
                     <LearnMore />
                 </Route>
                 <PrivateRoute path="/account" exact>
-                   <Profile/>
+                    <Navbar />
+                    <Profile />
                 </PrivateRoute>
                 <Route path="/account/register" exact>
                     <Register />
@@ -53,13 +54,19 @@ const Routes = () => {
                 <Route path="/order" exact>
                     <Checkout />
                 </Route>
+                <Route to="/mail">
+                <Navbar />
+                    <ContactUs/>
+                    <FreeShipping />
+                    <LearnMore />
+                </Route>
                 <Route exact>
                     <h1>
                         404.error
                         </h1>
                 </Route>
             </Switch>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 }
