@@ -19,7 +19,7 @@ const init={
 export const Register=()=> {
     const [value,setValue]=CustomHook(init);
     const dispatch = useDispatch();
-    const {isAuth,error} =useSelector(state=>state.authReducer)
+    const {isAuth,error,error_message} =useSelector(state=>state.authReducer)
     const handleFormData=(e)=>{
         e.preventDefault();
         dispatch(userSignUp(value))
@@ -27,16 +27,9 @@ export const Register=()=> {
     React.useEffect(() => {
         window.scrollTo(0, 0)
         document.title="Register | Taza Chocolate"
-
       }, [])
-
     return (
             <div>
-                {error && 
-                   <Alert style={{display:'fixed',zIndex:10000}} variant="filled" severity="error">
-                       User Already exsist!
-                    </Alert>
-                }
                 {
                     isAuth && <Redirect to="/account"/>
                 }
@@ -46,6 +39,11 @@ export const Register=()=> {
                     </div>
                 </div>   
                 <div className={styles.formData}>
+                {error && 
+                   <Alert style={{display:'fixed',zIndex:10000}} variant="filled" severity="error">
+                      {error_message}
+                   </Alert>
+                }
                     <form onSubmit={handleFormData}>
                         <div>
                         <div className={styles.label}>
@@ -64,7 +62,7 @@ export const Register=()=> {
                             <label htmlFor="">EMAIL ADDRESS</label>
                             </div>
                             <div className={styles.input}>
-                             <input required type="email" placeholder="Email" name="email" onChange={(e)=>setValue({[e.target.name]:e.target.value})} value={value.email}/>
+                             <input required type="text" placeholder="Email" name="email" onChange={(e)=>setValue({[e.target.name]:e.target.value})} value={value.email}/>
                             </div>
                         </div>
                         <div>

@@ -59,13 +59,14 @@ export const Checkout = () => {
                         </div>
                     </div>
                     <h4>Shipping Address</h4>
+                    <br/>
                     <div>
                         <form action="" className={styles.form_inputs}>
                             <div className={styles.first_inp_div}>
                                 <div>
                                     <TextField
                                         variant="outlined"
-                                        label="text"
+                                        label="First Name"
                                         type="text"
                                         className={styles.input_name}
                                     />
@@ -73,7 +74,7 @@ export const Checkout = () => {
                                 <div>
                                     <TextField
                                         variant="outlined"
-                                        label="text"
+                                        label="Last Name"
                                         type="text"
                                         className={styles.input_name}
                                     />
@@ -82,7 +83,7 @@ export const Checkout = () => {
                             <div>
                                 <TextField size='small'
                                     variant="outlined"
-                                    label="text"
+                                    label="Company"
                                     type="text"
                                     fullWidth
                                     style={{ margin: '10px 0px' }}
@@ -91,7 +92,7 @@ export const Checkout = () => {
                             <div>
                                 <TextField size='small'
                                     variant="outlined"
-                                    label="text"
+                                    label="Address"
                                     type="text"
                                     style={{ margin: '10px 0px' }}
                                     fullWidth
@@ -100,7 +101,7 @@ export const Checkout = () => {
                             <div>
                                 <TextField size='small'
                                     variant="outlined"
-                                    label="text"
+                                    label="Apartment, suite (Optional)"
                                     type="text"
                                     style={{ margin: '10px 0px' }}
                                     fullWidth
@@ -110,7 +111,7 @@ export const Checkout = () => {
                             <div>
                                 <TextField size='small'
                                     variant="outlined"
-                                    label="text"
+                                    label="City"
                                     type="text"
                                     style={{ margin: '10px 0px' }}
                                     fullWidth
@@ -122,14 +123,14 @@ export const Checkout = () => {
 
                                         id="outlined-select-currency"
                                         select
-                                        label="Select"
+                                        label="Country/Region"
                                         value={currency}
                                         onChange={handleChange}
                                         helperText="Please select your currency"
                                         variant="outlined"
                                         color="primary"
                                     >
-                                        {[1, 2, 3, 4, 5].map((option) => (
+                                        {["United States"].map((option) => (
                                             <MenuItem key={option.value} style={{ color: 'primary' }} value={option}>
                                                 {option}
                                             </MenuItem>
@@ -141,7 +142,7 @@ export const Checkout = () => {
 
                                         id="outlined-select-currency"
                                         select
-                                        label="Select"
+                                        label="States"
                                         value={currency}
                                         onChange={handleChange}
                                         helperText="Please select your currency"
@@ -158,7 +159,7 @@ export const Checkout = () => {
                                 <div><div>
                                     <TextField
                                         variant="outlined"
-                                        label="text"
+                                        label="ZIP code"
                                         type="text"
                                     />
                                 </div></div>
@@ -167,7 +168,7 @@ export const Checkout = () => {
                                 <div>
                                     <TextField size='small'
                                         variant="outlined"
-                                        label="text"
+                                        label="Phone"
                                         type="text"
                                         style={{ margin: '10px 0px' }}
                                         fullWidth

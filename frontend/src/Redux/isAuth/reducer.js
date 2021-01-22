@@ -32,15 +32,15 @@ export const isAuthReducer = (state = initialState, { type, payload }) => {
           profile: payload,
           isLoading: false,
           isAuth: true,
-          error: true,
+          error: false,
         };
       case REQUEST_USER_LOGIN_SUCCESS:
       return {
         ...state,
-        profile: payload[0],
+        profile: payload,
         isLoading: false,
         isAuth: true,
-        error: true,
+        error: false,
       };
     case REQUEST_USER_SIGNUP_FAILURE: {
       return {

@@ -28,8 +28,8 @@ const Routes = () => {
                     <LearnMore />
                 </Route>
                 <Route path="/collections/amaze-bars" exact>
-                    <BarPage />
                     <Navbar />
+                    <BarPage />
 
                     <FreeShipping />
                     <LearnMore />
@@ -54,7 +54,7 @@ const Routes = () => {
                 <Route path="/order" exact>
                     <Checkout />
                 </Route>
-                <Route to="/mail">
+                <Route to="/mail" exact>
                 <Navbar />
                     <ContactUs/>
                     <FreeShipping />

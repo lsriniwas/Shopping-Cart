@@ -68,6 +68,7 @@
   width: 45%;
 }
 .form_footer div p {
+  cursor: pointer;
   color: #57cddd;
 }
 
@@ -80,6 +81,7 @@
   font-weight: 900;
   text-align: center;
   display: grid;
+  cursor: pointer;
   place-items: center;
   padding: 14px 0px;
 }

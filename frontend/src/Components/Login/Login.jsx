@@ -38,7 +38,7 @@ export const Login = ({login,setLogin}) => {
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const dispatch=useDispatch()
-    const {isAuth,error} =useSelector(state=>state.authReducer)
+    const {isAuth,error,error_message} =useSelector(state=>state.authReducer)
     const handleClose = () => {
         setOpen(false);
         setLogin(false)
@@ -88,7 +88,7 @@ export const Login = ({login,setLogin}) => {
                 <div>
                 {error && 
                    <Alert  variant="filled" severity="error">
-                     Email and Password does not match!
+                     {error_message}
                     </Alert>
                 }
                 {
@@ -108,7 +108,7 @@ export const Login = ({login,setLogin}) => {
                             <label htmlFor="">PASSWORD</label>
                             </div>
                             <div className={styles.input}>
-                             <input required  type="text" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
+                             <input required  type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
                             </div>
                         </div>
                         <button className={styles.formButton} >SIGN IN</button>

@@ -1,40 +1,7 @@
 import { ADD_TO_CART, DELETE_CART } from "./actionType";
 
 const initialState = {
-  cart: [
-    {
-      id: "2",
-      img:
-        "https://cdn.shopify.com/s/files/1/0974/7668/products/Almond_Milk_Classic_Shopify_large.jpg",
-      qty: 2,
-      price: 6.99,
-      name: "Almond Milk Classic",
-    },
-    {
-      id: "3",
-      img:
-        "https://cdn.shopify.com/s/files/1/0974/7668/products/Almond_Milk_Cashew_Shopify_large.jpg",
-      qty: 1,
-      price: 6.99,
-      name: "Almond Milk Crunchy Cashew",
-    },
-    {
-      id: "1",
-      img:
-        "https://cdn.shopify.com/s/files/1/0974/7668/products/Product_Gingerbread_large.png",
-      qty: 1,
-      price: 3.75,
-      name: "Gingerbread Cookie",
-    },
-    {
-      id: "9",
-      img:
-        "https://cdn.shopify.com/s/files/1/0974/7668/products/Taza_Toffee_webstore_large.jpg?v=1518615587",
-      qty: 1,
-      price: 5,
-      name: "Toffee, Almond, & Sea Salt",
-    },
-  ],
+  cart: [],
   totalAmt: 0,
   totalItems: 0,
 };

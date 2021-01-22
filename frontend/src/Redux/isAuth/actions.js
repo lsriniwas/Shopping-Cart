@@ -29,7 +29,7 @@ return axios(config)
        .then((response)=>{
         dispatch(fetchUserSignUpSuccess(response.data.userInfo))})
        .catch((error)=>{
-        dispatch(fetchUserSignUpFailure(error))
+        dispatch(fetchUserSignUpFailure(error.response.data))
         });
 }
 
@@ -62,7 +62,7 @@ export const userLogin=payload=>dispatch=>{
   .then( (res)=> {
         dispatch(fetchUserLoginSuccess(res.data.userInfo))})
   .catch((err)=> {
-       dispatch(fetchUserLoginFailure(err))
+       dispatch(fetchUserLoginFailure(err.response.data.Error))
   });
 }
 

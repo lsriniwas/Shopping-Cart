@@ -2,9 +2,6 @@ const express=require('express');
 const router=express.Router();
 const nodemailer =require('nodemailer')
 router.post("/mail",(req,res)=>{
-
-    console.log(req.body)
-
     let transporter=nodemailer.createTransport({
         service:"Gmail",
         auth:{
