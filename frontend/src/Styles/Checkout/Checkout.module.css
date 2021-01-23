@@ -67,7 +67,7 @@
 .form_footer div {
   width: 45%;
 }
-.form_footer div p {
+.form_footer div a {
   cursor: pointer;
   color: #57cddd;
 }
@@ -273,8 +273,6 @@
     }
       
 }
-
-
 @media screen and (max-width: 1235px) {
 }
 

@@ -1,16 +1,20 @@
-import React from 'react'
+import { MenuItem, Select } from '@material-ui/core'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom'
-import { deletecart } from '../../Redux/Cart_and_Orders/actions'
+import { deletecart, updateOrder } from '../../Redux/Cart_and_Orders/actions'
 import "../../Styles/Cart/Cart.module.css"
 import styles from "../../Styles/Cart/Cart.module.css"
+import { Login } from '../Login/Login'
 
 export const Cart = () => {
     const dispatch = useDispatch();
     const history =useHistory()
+    const [login,setLogin]=useState(false);
+    const { isAuth, isLoading, profile } = useSelector(state => state.authReducer)
     const items = useSelector(state => state.cartorderReducer.cart)
     const total = useSelector(state => state.cartorderReducer.totalAmt)
-    const [qty, setQty] = React.useState(1);
+    const [qty, setQty] = React.useState();
 
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -22,9 +26,23 @@ export const Cart = () => {
     }
 
     const handleCheckout=()=>{
-        history.push("/order")
+        if(!isAuth){
+            setLogin(true)
+        }
+        else{
+            history.push("/order")
+        }
     }
-
+    const handleUpdateCart = (id,value) => {
+        let quantity=value;
+        if(quantity<0){
+            quantity=0
+            dispatch(updateOrder(id,quantity))
+        }
+        else{
+            dispatch(updateOrder(id,quantity))
+        }
+    };
 
     return (
         <div className={styles.root}>
@@ -57,10 +75,10 @@ export const Cart = () => {
                                 </td>
                                 <td>${item.price.toFixed(2)}</td>
                                 <td>
-                                    {item.qty}
-                                    {/* <input type="number" className={styles.qty_number} value={qty} onChange={(e) => e.target.value <= 0 ? setQty(1) : setQty(e.target.value)} id="" /> */}
+                                    {/* {item.qty} */}
+                                    <input type="number" className={styles.qty_number} value={item.qty}  onChange={(e) => handleUpdateCart(item.id,e.target.value) }  />
                                 </td>
-                                <td>${item.qty * item.price}</td>
+                                <td style={{}}>${(item.qty * item.price).toFixed(3)}</td>
                             </tr>
                         )
                         }
@@ -99,6 +117,9 @@ export const Cart = () => {
                 <div>Continue browsing  <NavLink to="/" className={styles.span}>Here.</NavLink></div>
                 </div>}
             </div>
+            {
+               login && <Login login={login} setLogin={setLogin} />
+             }
         </div>
     )
 }

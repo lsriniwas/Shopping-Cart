@@ -230,7 +230,7 @@ width: 50% ;
     right: 40%;
     top:25%;
     background:#F4355A;
-    transition:.5s ease-in;
+    transition:1s;
     color: white;
     border-radius: 5px;
     padding:20px 10px;

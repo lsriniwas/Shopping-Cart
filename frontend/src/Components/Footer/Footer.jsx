@@ -4,7 +4,7 @@ import "../../Styles/Footer/Footer.module.css"
 import { Grid } from "@material-ui/core"
 import { NavLink } from 'react-router-dom'
 export const Footer = () => {
-    
+  
     return (
         <div className={styles.footer_main}>
             <div className={styles.footer_wrapper}>
