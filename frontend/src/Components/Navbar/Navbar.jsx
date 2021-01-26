@@ -163,7 +163,7 @@ export const Navbar = () => {
             </div>}
             { menu && <div className={styles.hoverData} style={{ flexDirection: 'column' }}>
                 <div className={styles.hoverData_wrapper}>
-                    <ul style={{ borderBottom: '1px solid #fff' }}>
+                    <ul>
                         <li onClick={()=>
                            { setBuy(true)
                             setLearn(false)

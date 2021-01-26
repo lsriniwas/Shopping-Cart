@@ -40,14 +40,16 @@ const addUser = async (req, res, next) => {
   }
 };
 
+
+
 const getUser = async (req, res,next) => {
   const { errors } = loginSchema(req.body);
   if (errors) {
-    return res.status(400).send(errors.details[0].message);
+       return res.status(400).send(errors.details[0].message);
   }
-  const user = await User.findOne({ email: req.body.email });
+      const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    return res.status(400).send({ Error: "User Not Found" });
+      return res.status(400).send({ Error: "User Not Found" });
   }
 
   const checkPassword =  await bcrypt.compareSync(req.body.password, user.password.toString());

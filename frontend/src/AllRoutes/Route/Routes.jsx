@@ -4,6 +4,7 @@ import { MainBody } from '../../Components/Body/MainBody'
 import { Cart } from '../../Components/Cart/Cart'
 import { Checkout } from '../../Components/Checkout/Checkout'
 import { ContactUs } from '../../Components/ContactUs/ContactUs'
+import { Error } from '../../Components/Error'
 import { SocialMedia } from '../../Components/FixedSocialMediaHandle/SocialMedia'
 import { Footer } from '../../Components/Footer/Footer'
 import { FreeShipping } from '../../Components/FreeShipping/FreeShipping'
@@ -54,16 +55,15 @@ const Routes = () => {
                 <Route path="/order" exact>
                     <Checkout />
                 </Route>
-                <Route to="/mail" exact>
-                <Navbar />
+                <Route path="/mail" exact>
+                     <Navbar />
                     <ContactUs/>
                     <FreeShipping />
                     <LearnMore />
                 </Route>
                 <Route exact>
-                    <h1>
-                        404.error
-                        </h1>
+                <Navbar />
+                   <Error/>
                 </Route>
             </Switch>
             <Footer />

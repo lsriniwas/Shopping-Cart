@@ -31,7 +31,6 @@ export const Profile = () => {
         setOpen(false);
     }
     React.useEffect(() => {
-        window.scrollTo(0, 0)
         document.title = `User Profile |Taza Chocolate `
     }, [])
 
@@ -69,6 +68,7 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
+            
             <Modal
                 className={classes.modal}
                 open={open}
@@ -91,12 +91,15 @@ export const Profile = () => {
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <Typography>
-                                                <br />
                                                 {address.phone}
                                                 <br />
                                                 {address.address}
+                                                <br/>
                                                 {address.apartment}
+                                                <br/>
                                                 {address.company}
+                                                <br/>
+                                                {address.city}
                                                 <br />
                                                 {address.state}-{address.zipcode}
                                             </Typography>

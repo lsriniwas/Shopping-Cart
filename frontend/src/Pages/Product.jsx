@@ -29,10 +29,10 @@ export const Product = () => {
         dispatch(addToCart(payload, qty))
         setItemAdded(true)
 
-       let timer= setTimeout(() => {
-            setItemAdded(false)
-            clearTimeout(timer)
-        }, 2000)
+    //    let timer= setTimeout(() => {
+    //         setItemAdded(false)
+    //         clearTimeout(timer)
+    //     }, 2000)
 
     }
 
