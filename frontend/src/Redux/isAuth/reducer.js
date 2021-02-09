@@ -17,6 +17,7 @@ const initialState = {
 };
 
 export const isAuthReducer = (state = initialState, { type, payload }) => {
+  console.log(payload)
   switch (type) {
     case REQUEST_USER_SIGNUP || REQUEST_USER_LOGIN:
       return {

@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import styles from "../../Styles/Register/Register.module.css"
-import { useDispatch, useSelector } from "react-redux"
 import "../../Styles/Register/Register.module.css"
-import { userSignUp } from '../../Redux/isAuth/actions'
-import { TextField } from '@material-ui/core'
 import axios from 'axios'
 
 export const ContactUs = () => {

@@ -2,24 +2,81 @@ import React, { useState } from 'react'
 import styles from "../../Styles/Checkout/Checkout.module.css"
 import Divider from '@material-ui/core/Divider';
 import { useSelector } from 'react-redux';
-import { Badge, MenuItem, OutlinedInput, TextField } from '@material-ui/core';
+import { Badge, MenuItem, Paper, Snackbar, TextField } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { Alert } from '@material-ui/lab';
+import { CustomHook } from '../CustomHook/CustomHook';
 
+const init = {
+    first_name: "",
+    last_name: "",
+    company: "",
+    apartment: "",
+    address: "",
+    city:"",
+    country: "",
+    state: "",
+    zipcode: "",
+    phone: ""
+}
 export const Checkout = () => {
+    const [formDisplay,setFormDisplay]=useState(true)
+    const [value, setValue] = CustomHook(init)
+    let address = ""
+    const [open, setOpen] = useState(false);
+    const { isAuth,  profile } = useSelector(state => state.authReducer)
     const cartItems = useSelector(state => state.cartorderReducer.cart)
     const totalAmt = useSelector(state => state.cartorderReducer.totalAmt)
-    const [currency, setCurrency] = React.useState('EUR');
+    const [presentAddress, setAdd] = useState("")
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+        document.title = `Checkout |Taza Chocolate `
+    })
 
-    const handleChange = (event) => {
-        setCurrency(event.target.value);
-    };
-    console.log(cartItems, totalAmt)
-
+    const handleShipping=()=>{
+        setFormDisplay(false)
+    }
+    const handleAddress = (value) => {
+        const temp=value.trim(" ").split("\n")
+        console.log(temp)
+        const payload=value.split("\n")
+        let init={
+            first_name:""||payload[0],
+            last_name:""||payload[1],
+            company:""||payload[2],
+            apartment:""||payload[3],
+            address:""||payload[4],
+            city:""||payload[5],
+            country:""||payload[6],
+            state:""||payload[7],
+            zipcode:""||payload[8],
+            phone:""||payload[9]
+        }
+        console.log(init)
+        setValue(init)
+        setAdd(value)
+        setOpen(true)
+        setTimeout(() => {
+            setOpen(false)
+        }, 2000)
+    }
     return (
         <div className={styles.root}>
+            {
+                cartItems.length === 0 && <Redirect to="/" />
+            }
+            {
+                !isAuth && <Redirect to="/" />
+            }
+            <Snackbar open={open} anchorOrigin={{ 'vertical': 'top', 'horizontal': 'center' }} autoHideDuration={2000}>
+                <Alert severity="info">
+                    Address Selected
+                </Alert>
+            </Snackbar>
             <div className={styles.header} >
                 <div className={styles.wrapper}>
                     <div>
@@ -43,76 +100,140 @@ export const Checkout = () => {
                                     <button className={styles.amazon_pay}></button>
                                 </div>
                             </div>
-
                         </div>
                         <br />
                         <br />
+                       {  formDisplay &&
+                       <>
                         <h4>Contact Information</h4>
                         <div className={styles.contact_info}>
                             <div>
                                 <img src="http://via.placeholder.com/60" alt="" />
                             </div>
                             <div>
-                                <p>Sriniwas (Sriniwas@gamil.com)</p>
-                                <p>Logout</p>
+                                <p>{profile.first_name}{profile.last_name}</p>
+                                <p>{profile.email}</p>
                             </div>
                         </div>
+                       <div >
+                            <br />
+                            <select className={styles.select} name="address" value={presentAddress} onChange={(e) => handleAddress(e.target.value)} style={{ width: '100%' }}>
+                                <option value="" disabled>--Select Address--</option>
+                                {
+                                    profile.addresses?.map((address, i) =>
+                                        <option
+                                            value={`${address.first_name}\n${address.last_name}\n${address.company}\n${address.apartment}\n${address.address}\n${address.city}\n${address.country}\n${address.state}\n${address.zipcode}\n${address.phone}`}>
+                                            {address.first_name},{address.last_name},
+                                                    {address.company},
+                                                    {address.apartment},
+                                                    {address.address},
+                                                    {address.city},
+                                                    {address.country},{address.state},{address.zipcode},
+                                                    {address.phone}
+                                        </option>
+                                    )
+                                }
+                            </select>
+                        </div>
+                        </>
+                        }
                     </div>
                     <h4>Shipping Address</h4>
-                    <br/>
+                    <br />
+                    {!formDisplay && 
+                         <div className={styles.formDisplay}>
+                               <div className={styles.formDisplay_contact}>
+                                    <div className={styles.formDisplay_label}>Contact</div>
+                                    <div>{profile.email}</div>
+                               </div>
+                                <div style={{borderBottom:'1px solid rgba(224, 224, 224, 1)'}}></div>
+                               <div className={styles.formDisplay_contact}>
+                                    <div className={styles.formDisplay_label}>Ship to</div>
+                                    <div>
+                                         <p>
+                                        {presentAddress}
+                                        </p> 
+                                        </div>
+                               </div>
+                         </div>
+                    }
                     <div>
-                        <form action="" className={styles.form_inputs}>
+                        { formDisplay && <form action="" className={styles.form_inputs}  >
                             <div className={styles.first_inp_div}>
                                 <div>
                                     <TextField
+                                    value={value.first_name}
+                                        onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+
                                         variant="outlined"
                                         label="First Name"
                                         type="text"
+                                        name="first_name"
                                         className={styles.input_name}
                                     />
                                 </div>
                                 <div>
                                     <TextField
+                                    value={value.last_name}
+                                        onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+
                                         variant="outlined"
                                         label="Last Name"
                                         type="text"
+                                        name="last_name"
                                         className={styles.input_name}
                                     />
                                 </div>
                             </div>
                             <div>
-                                <TextField size='small'
+                                <TextField
+                                value={value.company}
+                                    onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+                                    size='small'
                                     variant="outlined"
                                     label="Company"
                                     type="text"
+                                    name="company"
                                     fullWidth
                                     style={{ margin: '10px 0px' }}
                                 />
                             </div>
                             <div>
-                                <TextField size='small'
-                                    variant="outlined"
-                                    label="Address"
-                                    type="text"
-                                    style={{ margin: '10px 0px' }}
-                                    fullWidth
-                                />
-                            </div>
-                            <div>
-                                <TextField size='small'
+                                <TextField
+                                value={value.apartment}
+                                    onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+                                    size='small'
                                     variant="outlined"
                                     label="Apartment, suite (Optional)"
                                     type="text"
+                                    name="apartment"
+                                    style={{ margin: '10px 0px' }}
+                                    fullWidth
+                                />
+                            </div>
+                            <div>
+                                <TextField
+                                value={value.address}
+                                    onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+                                    size='small'
+                                    variant="outlined"
+                                    label="Address"
+                                    type="text"
+                                    name="address"
                                     style={{ margin: '10px 0px' }}
                                     fullWidth
                                 />
                             </div>
 
                             <div>
-                                <TextField size='small'
+                                <TextField
+                                value={value.city}
+                                    onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+                                    size='small'
                                     variant="outlined"
                                     label="City"
                                     type="text"
+                                    name="city"
                                     style={{ margin: '10px 0px' }}
                                     fullWidth
                                 />
@@ -120,17 +241,18 @@ export const Checkout = () => {
                             <div className={styles.select_option}>
                                 <div className={styles.padding_left}>
                                     <TextField
+                                        onChange={(e) => setValue({ [e.target.name]: e.target.value })}
 
                                         id="outlined-select-currency"
                                         select
                                         label="Country/Region"
-                                        value={currency}
-                                        onChange={handleChange}
-                                        helperText="Please select your currency"
+                                        name="country"
+                                        value={value.country}
+                                        helperText="Please select your Country"
                                         variant="outlined"
                                         color="primary"
                                     >
-                                        {["United States"].map((option) => (
+                                        {["India"].map((option) => (
                                             <MenuItem key={option.value} style={{ color: 'primary' }} value={option}>
                                                 {option}
                                             </MenuItem>
@@ -139,17 +261,17 @@ export const Checkout = () => {
                                 </div>
                                 <div>
                                     <TextField
+                                        onChange={(e) => setValue({ [e.target.name]: e.target.value })}
 
-                                        id="outlined-select-currency"
                                         select
                                         label="States"
-                                        value={currency}
-                                        onChange={handleChange}
-                                        helperText="Please select your currency"
+                                        value={value.state}
+                                        name="state"
+                                        helperText="Please select your State"
                                         variant="outlined"
                                         color="primary"
                                     >
-                                        {[1, 2, 3, 4, 5].map((option) => (
+                                        {["Karnataka", "Tamil Nadu", "Kerala", "Andhra Pradesh", "Telangana"].map((option) => (
                                             <MenuItem key={option.value} style={{ color: 'primary' }} value={option}>
                                                 {option}
                                             </MenuItem>
@@ -158,6 +280,10 @@ export const Checkout = () => {
                                 </div>
                                 <div><div>
                                     <TextField
+                                        onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+
+                                        value={value.zipcode}
+                                        name="zipcode"
                                         variant="outlined"
                                         label="ZIP code"
                                         type="text"
@@ -166,7 +292,11 @@ export const Checkout = () => {
                             </div>
                             <div>
                                 <div>
-                                    <TextField size='small'
+                                    <TextField
+                                        onChange={(e) => setValue({ [e.target.name]: e.target.value })}
+                                        size='small'
+                                        name="phone"
+                                        value={value.phone}
                                         variant="outlined"
                                         label="Phone"
                                         type="text"
@@ -175,15 +305,20 @@ export const Checkout = () => {
                                     />
                                 </div>
                             </div>
-                        </form>
+                        </form>}
                         <div className={styles.form_footer}>
                             <div>
-                                <p>{`< Return to cart`}</p>
+                                <NavLink to="/cart">{`< Return to cart`}</NavLink>
                             </div>
                             <div>
-                                <div>
-                                    Continue Shopping
+                              {  formDisplay ? 
+                                <div onClick={()=>handleShipping()}>
+                                    Continue Shipping
                                 </div>
+                                :
+                                <div>
+                                    Place Order
+                                </div>}
                             </div>
                         </div>
                         <div className={styles.footer}>
@@ -213,11 +348,12 @@ export const Checkout = () => {
                                                             </div>
                                                         </div>
                                                     </Badge>
-                                                    <span style={{ fontSize: '11px', marginLeft: '5px' }}>
+                                                    <span style={{ fontSize: '10px', marginLeft: '5px' }}>
                                                         {item.name}
                                                     </span>
                                                 </TableCell>
-                                                <TableCell align="right">{`$ ${(item.qty * item.price).toFixed(2)}`}</TableCell>
+                                                <TableCell align="right">{`$ 
+                                                ${(item.qty * item.price).toFixed(2)}`}</TableCell>
                                             </TableRow>
                                         )
                                     })
@@ -230,7 +366,8 @@ export const Checkout = () => {
                                 </TableRow>
                                 <TableRow >
                                     <TableCell>SubTotal</TableCell>
-                                    <TableCell align="right">{`$ ${totalAmt.toFixed(2)}`}</TableCell>
+                                    <TableCell align="right">{`$ 
+                                    ${totalAmt.toFixed(2)}`}</TableCell>
                                 </TableRow>
                                 <TableRow >
                                     <TableCell>Shipping</TableCell>
@@ -238,7 +375,8 @@ export const Checkout = () => {
                                 </TableRow>
                                 <TableRow >
                                     <TableCell>Total</TableCell>
-                                    <TableCell align="right"><h1>{`$ ${totalAmt.toFixed(2)}`}</h1></TableCell>
+                                    <TableCell align="right"><h2>{`$ 
+                                    ${totalAmt.toFixed(2)}`}</h2></TableCell>
                                 </TableRow>
                             </TableBody>
                         </Table>

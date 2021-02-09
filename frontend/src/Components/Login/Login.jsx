@@ -91,9 +91,9 @@ export const Login = ({login,setLogin}) => {
                      {error_message}
                     </Alert>
                 }
-                {
+                {/* {
                     isAuth && <Redirect to="/account"/>
-                }
+                } */}
                     <form onSubmit={handleLoginData}>
                         <div>
                             <div className={styles.label}>

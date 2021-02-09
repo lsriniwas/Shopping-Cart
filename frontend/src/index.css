@@ -20,7 +20,7 @@ code {
 ul{
   list-style: none;
 }
-a{
+* a{
   text-decoration: none !important;
 }
 

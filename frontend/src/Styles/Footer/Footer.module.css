@@ -48,7 +48,7 @@ h3{
     color: #fff;
 }
 
-li a{
+.grid_item_list li a{
     font-size: 12px;
     color: #acacac;
 }

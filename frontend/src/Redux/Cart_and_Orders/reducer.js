@@ -1,4 +1,4 @@
-import { ADD_TO_CART, DELETE_CART } from "./actionType";
+import { ADD_TO_CART, DELETE_CART, UPDATE_CART } from "./actionType";
 
 const initialState = {
   cart: [],
@@ -54,6 +54,16 @@ export const cartorderReducer = (
         totalAmt: total.total,
         totalItems: total.totaItems,
       };
+    case UPDATE_CART:{
+    let newCart=state.cart.map(item=>item.id===payload?{...item,qty:qty}:item)
+      let total = getTotal(newCart);
+      return {
+        ...state,
+        cart: [...newCart],
+        totalAmt: total.total,
+        totalItems: total.totaItems,
+      };
+    }
     default:
       return state;
   }
