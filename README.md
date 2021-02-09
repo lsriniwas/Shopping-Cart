@@ -1,6 +1,4 @@
 # Shopping-Cart
-# Team Triangle
-
 # Taza- Clone
   
 <div style="font-size:24px;font-family:sans-serif">
