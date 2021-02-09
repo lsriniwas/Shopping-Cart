@@ -21,7 +21,7 @@ Taza is probably the least-processed chocolate you can find. THE USDA organic ch
 
 
 ## Sneak peek
-![gif](./screenshots/chrome.png)
+![gif](./screenshots/chrome.gif)
 
 ## <code>Landing Page</code>
 ![img](./screenshots/home.png)
