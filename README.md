@@ -1,12 +1,11 @@
 # Shopping-Cart
 # Team Triangle
 
-# Netflix- Clone
+# Taza- Clone
   
 <div style="font-size:24px;font-family:sans-serif">
-In the project directory, tried to clone Netflix.  
-Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries and more – on thousands of internet-connected devices.
-You can watch as much as you want, whenever you want, without a single ad – all for one low monthly price. There's always something new to discover, and new TV shows and movies are added every week!
+Taza Chocolate is a Mexican-inspired stoneground, organic chocolate manufacturer based in Somerville, MA, USA.
+Taza is probably the least-processed chocolate you can find. THE USDA organic chocolate combines just cocoa beans and sugar.
  </div>
 
 ## Tech Stack used:
@@ -30,7 +29,7 @@ You can watch as much as you want, whenever you want, without a single ad – al
 ![img](./screenshots/home.png)
 
 ## <code>Home Page</code>
-![gif](./screenshots/listing.png)
+![img](./screenshots/listing.PNG)
 
 
 
