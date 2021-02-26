@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from "../../Styles/Checkout/Checkout.module.css"
 import Divider from '@material-ui/core/Divider';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Badge, MenuItem, Paper, Snackbar, TextField } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 import { CustomHook } from '../CustomHook/CustomHook';
+import { addOrder } from '../../Redux/Cart_and_Orders/actions';
+import axios from 'axios';
 
 const init = {
     first_name: "",
@@ -23,14 +25,18 @@ const init = {
     zipcode: "",
     phone: ""
 }
+//asd
 export const Checkout = () => {
     const [formDisplay,setFormDisplay]=useState(true)
-    const [value, setValue] = CustomHook(init)
+    const [value, setValue] = CustomHook(init);
+    const dispatch = useDispatch();
+    const history=useHistory()
     let address = ""
     const [open, setOpen] = useState(false);
     const { isAuth,  profile } = useSelector(state => state.authReducer)
     const cartItems = useSelector(state => state.cartorderReducer.cart)
     const totalAmt = useSelector(state => state.cartorderReducer.totalAmt)
+    const message = useSelector(state => state.cartorderReducer.message)
     const [presentAddress, setAdd] = useState("")
     React.useEffect(() => {
         window.scrollTo(0, 0)
@@ -40,9 +46,21 @@ export const Checkout = () => {
     const handleShipping=()=>{
         setFormDisplay(false)
     }
-    const handleAddress = (value) => {
+    const handlePlaceOrder=async()=>{
+        const payload={
+            total_amount:totalAmt
+        }
+          const orderItems={
+            customer_id:profile._id,
+            items:[...cartItems],
+            date:new Date().toLocaleString(),
+            address:presentAddress,
+            total_amount:totalAmt
+        }   
+         dispatch(addOrder(payload,orderItems))
+        }
+        const handleAddress = (value) => {
         const temp=value.trim(" ").split("\n")
-        console.log(temp)
         const payload=value.split("\n")
         let init={
             first_name:""||payload[0],
@@ -64,6 +82,7 @@ export const Checkout = () => {
             setOpen(false)
         }, 2000)
     }
+    console.log(message)
     return (
         <div className={styles.root}>
             {
@@ -311,14 +330,16 @@ export const Checkout = () => {
                                 <NavLink to="/cart">{`< Return to cart`}</NavLink>
                             </div>
                             <div>
-                              {  formDisplay ? 
-                                <div onClick={()=>handleShipping()}>
-                                    Continue Shipping
-                                </div>
-                                :
-                                <div>
-                                    Place Order
-                                </div>}
+                              { 
+                                 formDisplay ? 
+                                    <div onClick={()=>handleShipping()}>
+                                        Continue Shipping
+                                    </div>
+                                    :
+                                    <div onClick={()=>handlePlaceOrder()}>
+                                        Place Order
+                                    </div>
+                              }
                             </div>
                         </div>
                         <div className={styles.footer}>
