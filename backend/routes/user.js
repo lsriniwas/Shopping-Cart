@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
-const {getUser,addUser}=require("../controller/user-controller")
+const {getUser,addUser,activeUser}=require("../controller/user-controller");
+const { authenticateToken } = require('../middleware/authentication');
 
 
 router.post("/account/register",addUser)     
@@ -9,7 +10,10 @@ router.post("/account/register",addUser)
 router.post("/user/profile",(req, res) => {
     getUser(req,res)
 })
-    
+
+router.get("/user/activeuser",authenticateToken,activeUser)
+
+router.get("/activeuser",)
     module.exports=router;
     
 

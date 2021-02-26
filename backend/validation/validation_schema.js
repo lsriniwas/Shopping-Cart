@@ -9,7 +9,6 @@ const userSignUpSchema=(data)=>{
         password:Joi.string().min(6).required(),
         order_history:Joi.array(),
         addresses:Joi.array()
-
     })
     return schema.validate(data)
 }

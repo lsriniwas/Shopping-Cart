@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import { fetchCollectionBars } from '../Redux/Collections/actions'
+import { fetchCollectionBars, getProductDetails } from '../Redux/Collections/actions'
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../Styles/BarPage/BarPage.module.css"
 import "../Styles/BarPage/BarPage.module.css"
-import { Breadcrumbs,Grid, Typography } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
+import {Grid, Typography } from '@material-ui/core';
+import {  useHistory } from 'react-router-dom';
 export const BarPage = () => {
     const dispatch = useDispatch()
     const bars = useSelector(state => state.collectionsBarReducer.bars)
@@ -21,9 +21,11 @@ export const BarPage = () => {
     }, [])
     const handleProduct=(product)=>{
         const data={
-            pathname:'/collections/amaze-bars/product',
+            pathname:'/collections/product',
             search: `?${product._id}`,
-            state:product
+            state:{
+                url:'amaze-bars'
+            }
         }
         history.push(data)
     }
@@ -31,18 +33,22 @@ export const BarPage = () => {
    
     return !loading && (
         <div className={styles.root}>
-            <div>
-                <Breadcrumbs separator="›" aria-label="breadcrumb">
-                    <Link to="/" >
-                        HOME
-                     </Link>
-                    <Link to="/bars">
-                        BUY
-                    </Link>
-                    <Typography color="textPrimary">BAR</Typography>
-                </Breadcrumbs>
-            </div>
-            <div className={styles.title_img}>
+           
+            <div className={styles.title_img}
+            
+            style={{
+                backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0974/7668/t/8/assets/page_banner_6_image.jpg")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+                height: '320px',
+                marginBottom: '9px',
+                position: 'relative',
+                display: 'grid',
+                placeItems: 'center',
+            }}
+            
+            >
                 <div>
                     <h1>bars</h1>
                 </div>
@@ -75,7 +81,7 @@ export const BarPage = () => {
                                         </p>
                                         <p>
                                         <span title="Buy">
-                                            <button className={styles.buy_button} >
+                                            <button className={styles.buy_button}  onClick={()=>handleProduct(bar)}  >
                                                 BUY
                                             </button>
                                         </span>

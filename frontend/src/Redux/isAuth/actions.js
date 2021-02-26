@@ -1,5 +1,6 @@
 import axios from "axios"
-import { REQUEST_USER_LOGIN, REQUEST_USER_LOGIN_FAILURE, REQUEST_USER_LOGIN_SUCCESS, REQUEST_USER_SIGNUP, REQUEST_USER_SIGNUP_FAILURE, REQUEST_USER_SIGNUP_SUCCESS, USER_LOGOUT } from "./actionType";
+import { loadData } from "../../Utils/localStorage";
+import {FETCH_USER_PROFILE_FAILURE, FETCH_USER_PROFILE, REQUEST_USER_LOGIN, REQUEST_USER_LOGIN_FAILURE, REQUEST_USER_LOGIN_SUCCESS, REQUEST_USER_SIGNUP, REQUEST_USER_SIGNUP_FAILURE, REQUEST_USER_SIGNUP_SUCCESS, USER_LOGOUT } from "./actionType";
 
 const fetchUserSignUp=()=>({
     type:REQUEST_USER_SIGNUP
@@ -29,7 +30,7 @@ return axios(config)
        .then((response)=>{
         dispatch(fetchUserSignUpSuccess(response.data.userInfo))})
        .catch((error)=>{
-        dispatch(fetchUserSignUpFailure(error.response.data))
+        dispatch(fetchUserSignUpFailure(error))
         });
 }
 
@@ -47,6 +48,34 @@ const fetchUserLoginFailure=(error)=>({
     payload:error
 })
 
+const fetchuserProfile=(payload)=>({
+    type:FETCH_USER_PROFILE,
+    payload
+})
+
+const fetchuserProfileFailure=(payload)=>({
+    type:FETCH_USER_PROFILE_FAILURE,
+    payload
+})
+
+export const getUserProfile=payload=>dispatch=>{
+    var config = {
+    method: 'get',
+    url: 'http://localhost:5000/user/activeuser',
+    headers: { 
+      'Authorization': `Bearer ${loadData('token')}`
+    },
+  }; 
+  return axios(config)
+  .then( (res)=> {
+        dispatch(fetchuserProfile(res.data.userInfo))
+    }
+    )
+    .catch((err)=>{
+        dispatch(fetchuserProfileFailure(err))
+    })
+}
+
 export const userLogin=payload=>dispatch=>{
     dispatch(fetchUserLogin());
 
@@ -57,13 +86,16 @@ export const userLogin=payload=>dispatch=>{
       'Content-Type': 'application/json'
     },
     data : payload
-  };
-   return axios(config)
+  }; 
+  return axios(config)
   .then( (res)=> {
-        dispatch(fetchUserLoginSuccess(res.data.userInfo))})
-  .catch((err)=> {
-       dispatch(fetchUserLoginFailure(err.response.data.Error))
-  });
+         dispatch(fetchUserLoginSuccess(res.data.accessToken))
+         dispatch(getUserProfile())
+        })
+         .catch((err)=> {
+         dispatch(fetchUserLoginFailure(err.response.data.Error))
+  
+        });
 }
 
 

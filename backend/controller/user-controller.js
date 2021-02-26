@@ -1,9 +1,14 @@
 const User = require("../models/user");
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
 const bcrypt = require("bcryptjs");
 const {
   userSignUpSchema,
   loginSchema,
 } = require("../validation/validation_schema");
+
+dotenv.config();
+
 
 const addUser = async (req, res, next) => {
   const { error } = await userSignUpSchema(req.body);
@@ -42,22 +47,34 @@ const addUser = async (req, res, next) => {
 
 
 
+const activeUser=async (req,res)=>{
+  const user=await User.findOne({ _id: req._id.data })
+  if(user){
+    return res.status(200).json({ messsage: "Login Successful", userInfo: user });
+  }
+  return res.status(404).json({ error:" Session Expired" });
+}
+
+
+
 const getUser = async (req, res,next) => {
   const { errors } = loginSchema(req.body);
-  if (errors) {
-       return res.status(400).send(errors.details[0].message);
-  }
+      if (errors) {
+          return res.status(400).send(errors.details[0].message);
+      }
       const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-      return res.status(400).send({ Error: "User Not Found" });
-  }
-
-  const checkPassword =  await bcrypt.compareSync(req.body.password, user.password.toString());
-  if (!checkPassword) {
-    return res.status(400).send({Error:"Wrong password"});
-  }
-    return res.status(200).json({ messsage: "Login Successful", userInfo: user });
-
+      if (!user) {
+          return res.status(400).send({ Error: "User Not Found" });
+      }
+      const checkPassword =  await bcrypt.compareSync(req.body.password, user.password.toString());
+      if (!checkPassword) {
+        return res.status(400).send({Error:"Wrong password"});
+      } 
+      console.log(user._id)
+      const accessToken = jwt.sign({data:user._id}, process.env.SECRET_KEY, { expiresIn: '11120s' });
+    
+      console.log(accessToken)
+      res.json({ accessToken: accessToken });
 };
 
-module.exports = { getUser, addUser };
+module.exports = { getUser, addUser,activeUser };

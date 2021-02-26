@@ -6,7 +6,7 @@ router.post("/mail",(req,res)=>{
         service:"Gmail",
         auth:{
             user:process.env.GMAIL_USERNAME,
-            pass:process.env.GMAIL_PASSWORD
+            pass:process.env.GMAIL_PASSWORD  
         }
     });
     let mailOptions={

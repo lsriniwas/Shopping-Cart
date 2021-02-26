@@ -31,7 +31,6 @@ const treatsSchema=new Schema({
     },
     more_info:{
         type:String,
-        required:true
     }
 },{
     versionKey:false,
