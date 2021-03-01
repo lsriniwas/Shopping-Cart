@@ -64,7 +64,7 @@ Clone down this repository. You will need node and npm installed globally on you
     <li>styled-components</li>
   </ul>
 
-
+<a href="https://taza-chocolate-clone.netlify.app/"> <h1>Demo</h1> </a>
 
 ### Acknowledgments
 <div>
